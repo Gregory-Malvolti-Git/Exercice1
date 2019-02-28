@@ -36,12 +36,20 @@ public class RomanToNumeral {
 	
 	
 	public int getNumeral(String nbRomain) {
-		int nombre = 0; 
-		for(int i=1; i<=nbRomain.length()-1; i++) {
-			if(getNombreDeBase(nbRomain.charAt(i)) >= nombre)
+		int nombre = 0;
+		int n =1;
+		for(int i=0; i<=nbRomain.length()-1; i++) {
+			if(getNombreDeBase(nbRomain.charAt(i)) >= nombre ) {
 				nombre += getNombreDeBase(nbRomain.charAt(i));
-			else
+			}
+			else if (n%1 == 0 && nbRomain.charAt(i) == 'I' || nbRomain.charAt(i) == 'X' || nbRomain.charAt(i) == 'C') {
+				n = n +  1;
 				nombre -= getNombreDeBase(nbRomain.charAt(i));
+			}
+			else {
+				nombre += getNombreDeBase(nbRomain.charAt(i));
+			}
+				
 		}
 		return nombre;
 	}
