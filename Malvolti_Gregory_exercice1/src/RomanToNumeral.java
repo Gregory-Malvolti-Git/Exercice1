@@ -2,9 +2,6 @@
 public class RomanToNumeral {
 	public int getNombreDeBase(char c) {
 		Integer nombre = 0;
-		if(c == ' ') {
-			return nombre;
-		}
 		if(c == 'I') {
 			nombre = 1;
 			return nombre;
@@ -40,8 +37,11 @@ public class RomanToNumeral {
 	
 	public int getNumeral(String nbRomain) {
 		int nombre = 0; 
-		for(int i =0; i<=nbRomain.length(); i++) {
-			nombre += getNombreDeBase(nbRomain.charAt(i));
+		for(int i=1; i<=nbRomain.length()-1; i++) {
+			if(getNombreDeBase(nbRomain.charAt(i)) >= nombre)
+				nombre += getNombreDeBase(nbRomain.charAt(i));
+			else
+				nombre -= getNombreDeBase(nbRomain.charAt(i));
 		}
 		return nombre;
 	}
